@@ -1,0 +1,42 @@
+#!/bin/sh
+
+
+# Bootstrap dotfiles
+# It's painful because I need to make it work with GitBash (Windows 10) as well as Linux.
+
+
+# Vars
+system_type=$(uname -s)
+yadm_config_custom_os=$(yadm config local.os)
+
+# Intro
+echo "Bootstrapping your dotfiles!"
+
+# Dotfiles submodule init
+echo "    Init submodules"
+cd "$HOME"
+#yadm submodule update --recursive --init # Commented out while testing
+
+# Windows specific config
+if [ "$yadm_config_custom_os" = "Win10" ]; then
+    echo "    Win10-specific configuration"
+    # scoop
+    scoop add extras
+    scoop bucket add spotify https://github.com/TheRandomLabs/Scoop-Spotify
+    scoop bucket add ledgerscoop https://github.com/earnestma/ledgerscoop
+    scoop update
+    # Main
+    scoop install sudo 7zip aria2 bat syncthing netcat
+    # Main-global
+    sudo scoop install -g dark 7zip audacity autohotkey \
+        fd ripgrep ff-mpeg youtube-dl restic python pandoc \
+        neovim mpv hugo-extended
+    # Extras
+    scoop install discord winscp thunderbird streamlink
+    # Extras-global
+    sudo scoop install -g emacs vlc hexchat gnucash
+    # Other
+    scoop install spotify-latest spicetify-cli spicetify-themes
+fi
+
+echo EEE
