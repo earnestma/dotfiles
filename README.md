@@ -22,7 +22,7 @@ My Doom Emacs config is stored [in a separate repo](https://git.earnestma.xyz/ea
 ## Windows-specific
 
 - (I use Git Bash): `uname -s` produces something weird like `MINGW64_NT-10.0-19041`. Override by using `yadm config local.os Win10` instead.
-- Environment Variables: `HOME C:\Users\earne` `GOPATH C:\Users\earne\go` `HUGO_ENV production` `PATH C:\Users\earne\scoop\shims C:\Users\earne\bin C:\Users\earne\.config\emacs\bin C:\Go\bin C:\Users\earne\go\bin`
+- Environment Variables: `HOME C:\Users\earne` `GOPATH C:\Users\earne\go` `HUGO_ENV production` `PATH C:\Users\earne\scoop\shims C:\Users\earne\bin C:\Users\earne\.config\emacs\bin C:\Go\bin C:\Users\earne\go\bin` `XDG_CONFIG_HOME C:\Users\earne\.config`
 - Pre-requisites:
   - [Git](https://git-scm.com/)
   - [Gpg4win](https://gpg4win.org/index.html)
