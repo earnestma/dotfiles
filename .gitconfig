@@ -1,0 +1,56 @@
+# ~/.gitconfig
+
+[include]
+    path = ~/.gitconfig.secret
+	path = ~/.gitconfig.local
+
+[user]
+	name = earnest ma
+	email = earnestma@hotmail.com
+	signingkey = 80AE985F9B4E3FB438E192996B361FA81C5FB695
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[color]
+	ui = true
+
+[core]
+	autocrlf = false
+	quotepath = false
+	commitGraph = true
+	longpaths = true
+
+[commit]
+	gpgsign = true
+
+[init]
+	defaultBranch = main
+
+[gc]
+	writeCommitGraph = true
+
+[credential]
+	helper = store
+
+# Stored in ~/.gitconfig.secret
+
+# [sendemail]
+# 	smtpserver = smtp.office365.com
+# 	smtpuser =
+# 	smtpencryption = tls
+# 	smtpserverport = 587
+# 	smtpPass =
+# 	annotate = yes
+
+# [imap]
+#  	host = imaps://outlook.office365.com
+# 	user =
+#   pass =
+#   port = 993
+
+[alias]
+	fuckit = reset --hard

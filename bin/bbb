@@ -1,0 +1,7 @@
+#!/bin/bash
+# Use git-sync on a few repos
+set -e
+cd ~/org
+git-sync
+cd ~/md
+git-sync

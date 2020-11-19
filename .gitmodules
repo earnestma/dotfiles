@@ -1,0 +1,6 @@
+[submodule ".bash/bash-powerline"]
+	path = .bash/bash-powerline
+	url = https://github.com/riobard/bash-powerline
+[submodule ".bash/shell-color-scripts"]
+	path = .bash/shell-color-scripts
+	url = https://gitlab.com/dwt1/shell-color-scripts
