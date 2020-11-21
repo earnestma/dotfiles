@@ -1,7 +1,7 @@
 # ~/.gitconfig
 
 [include]
-    path = ~/.gitconfig.secret
+	path = ~/.gitconfig.secret
 	path = ~/.gitconfig.local
 
 [user]
@@ -39,18 +39,18 @@
 # Stored in ~/.gitconfig.secret
 
 # [sendemail]
-# 	smtpserver = smtp.office365.com
-# 	smtpuser =
-# 	smtpencryption = tls
-# 	smtpserverport = 587
-# 	smtpPass =
-# 	annotate = yes
+#	smtpserver = smtp.office365.com
+#	smtpuser =
+#	smtpencryption = tls
+#	smtpserverport = 587
+#	smtpPass =
+#	annotate = yes
 
 # [imap]
-#  	host = imaps://outlook.office365.com
-# 	user =
-#   pass =
-#   port = 993
+#	host = imaps://outlook.office365.com
+#	user =
+#	pass =
+#	port = 993
 
 [alias]
 	fuckit = reset --hard
