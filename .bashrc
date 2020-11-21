@@ -42,9 +42,9 @@ alias pull='git pull'
 alias push='git push'
 alias status='git status'
 
-if [ -x "$(command -v thefuck)" ]; then
-    eval $(thefuck --alias)
-fi
+#if [ -x "$(command -v thefuck)" ]; then
+#    eval $(thefuck --alias)
+#fi
 
 # Git - which branch you're on
 #parse_git_branch() {
