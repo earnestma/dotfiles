@@ -4,6 +4,12 @@
 	path = ~/.gitconfig.secret
 	path = ~/.gitconfig.local
 
+[includeIf "gitdir:~/sources/scp/"]
+	path = ~/.gitconfig.scp
+
+[includeIf "gitdir:~/sites/scpsite/"]
+	path = ~/.gitconfig.scp
+
 [user]
 	name = earnest ma
 	email = earnestma@hotmail.com
