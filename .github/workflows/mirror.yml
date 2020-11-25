@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Mirror
       run: |
-        git clone --mirror https://git.earnestma.xyz/earnestma/dotfiles.git
+        git clone --mirror https://git.earne.link/earnestma/dotfiles.git
         cd dotfiles.git
         git remote add github "https://eeeee-bot:$TOKEN@github.com/earnestma/dotfiles.git"
         git push --mirror github
