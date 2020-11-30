@@ -42,6 +42,8 @@ alias pull='git pull'
 alias push='git push'
 alias status='git status'
 
+alias push-sites='git push origin && git push gh'
+
 #if [ -x "$(command -v thefuck)" ]; then
 #    eval $(thefuck --alias)
 #fi
