@@ -17,7 +17,11 @@ shopt -s autocd
 shopt -s cdspell
 
 # Aliases
-alias yay=""
+alias yay="emacsclient -c -n -a runemacs"
+
+alias tm0="tmux attach -t 0 || tmux"
+
+alias status="git status"
 alias push-sites="git push origin ; git push gh"
 
 eval "$(starship init bash)"
