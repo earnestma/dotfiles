@@ -1,0 +1,49 @@
+# ~/.gitconfig
+
+[include]
+	path = ~/.gitconfig.local
+	path = ~/.gitconfig.secret
+
+[user]
+	name = earnest ma
+	email = me@earne.link
+	signingkey = 80AE985F9B4E3FB438E192996B361FA81C5FB695
+
+[color]
+	ui = true
+
+[core]
+	autocrlf = false
+	quotepath = false
+	commitGraph = true
+	longpaths = true
+
+[commit]
+	gpgsign = true
+
+[init]
+	defaultBranch = main
+
+[gc]
+	writeCommitGraph = true
+
+[credential]
+	helper = store
+
+# Stored in ~/.gitconfig.secret
+# [sendemail]
+#	smtpserver = mail.example.com
+#	smtpuser =
+#	smtpencryption = tls
+#	smtpserverport = 587
+#	smtpPass =
+#	annotate = yes
+# [imap]
+#	host = imaps://mail.example.com
+#	user =
+#	pass =
+#	port = 993
+
+[alias]
+	fuckit = reset --hard
+
