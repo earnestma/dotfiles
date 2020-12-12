@@ -1,0 +1,2 @@
+" Basic neovim configuration
+
