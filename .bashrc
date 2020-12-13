@@ -13,7 +13,10 @@ if [ "$system_type" = "Linux" ]; then
 fi
 
 source ~/.bash_default
-. ~/.config/yadm/illumina
+
+if [ -t 1 ]; then
+	. ~/.config/yadm/illumina
+fi
 
 shopt -s autocd
 shopt -s cdspell
