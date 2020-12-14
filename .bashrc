@@ -27,8 +27,11 @@ alias em="emacsclient -c -a emacs"
 
 alias tm0="tmux attach -t 0 || tmux"
 
+alias scoopupdateall="scoop update ; scoop update '*' ; sudo scoop update -g '*'"
+
 alias status="git status"
 alias push="git push origin"
 alias push-sites="git push origin ; git push gh"
 
 eval "$(starship init bash)"
+
