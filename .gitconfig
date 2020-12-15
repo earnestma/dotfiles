@@ -24,8 +24,17 @@
 [init]
 	defaultBranch = main
 
+[status]
+	submodulesummary = true
+
 [gc]
 	writeCommitGraph = true
+
+[fetch]
+	prune = true
+
+[pull]
+	ff = only
 
 [credential]
 	helper = store
@@ -45,5 +54,7 @@
 #	port = 993
 
 [alias]
+	checkup = !git log -1 && (git fetch --all 2>/dev/null || true) && git status
 	fuckit = reset --hard
+	setup = !git init && git commit --allow-empty -m \"Initial commit\"
 
