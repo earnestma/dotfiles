@@ -4,7 +4,6 @@ system_type=$(uname -s)
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # linux-specific
 if [ "$system_type" = "Linux" ]; then
