@@ -21,6 +21,8 @@ shopt -s autocd
 shopt -s cdspell
 
 # Aliases
+alias emdaemon="emacs -daemon > /dev/null 2>&1 & disown"
+alias emkill="emacsclient -e '(kill-emacs)'"
 alias yay="emacsclient -c -n -a emacs"
 alias em="emacsclient -c -a emacs"
 
@@ -30,7 +32,7 @@ alias scoopupdateall="scoop update ; scoop update '*' ; sudo scoop update -g '*'
 
 alias status="git status"
 alias push="git push origin"
-alias push-sites="git push origin ; git push gh"
+alias push-sites="git push origin ; git push gh --all --force --prune"
 
 eval "$(starship init bash)"
 
