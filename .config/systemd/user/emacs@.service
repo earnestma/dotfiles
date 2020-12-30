@@ -1,0 +1,12 @@
+[Unit]
+Description=Emacs
+
+[Service]
+Type=forking
+ExecStart=emacs --daemon=%i --chdir %h
+ExecStop=emacsclient --server-file=hud --eval "(progn (setq kill-emacs-hook 'nil) (kill-emacs))"
+Restart=always
+TimeoutStartSec=0
+
+[Install]
+WantedBy=default.target
