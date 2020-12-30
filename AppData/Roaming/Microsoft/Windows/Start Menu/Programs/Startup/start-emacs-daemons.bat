@@ -1,2 +1,3 @@
-runemacs --daemon=personal
-runemacs --daemon=work
+runemacs --daemon=personal --chdir=%HOME%
+runemacs --daemon=work --chdir=%HOME%
+pause
