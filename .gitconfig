@@ -17,7 +17,7 @@
 	quotepath = false
 	commitGraph = true
 	longpaths = true
-	editor = nvim
+	editor = emacsclient -c --server-file=personal -a emacs
 
 [commit]
 	gpgsign = true
