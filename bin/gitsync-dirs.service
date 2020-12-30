@@ -1,9 +1,0 @@
-[Unit]
-Description=Automatically will do git-sync on repos
-
-[Service]
-Type=simple
-ExecStart=/home/earne/bin/gitsync-dirs.sh
-
-[Install]
-WantedBy=gitsync-dirs.target
