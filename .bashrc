@@ -23,14 +23,11 @@ shopt -s cdspell
 # Aliases
 
 ## personal Emacs Daemon
-alias pe="emacsclient --server-file=personal --create-frame --no-wait"
-alias pew="emacsclient --server-file=personal"
+alias pe="emacsclient --server-file=personal"
+alias pew="emacsclient --server-file=personal --create-frame --no-wait"
 ## work Emacs Daemon
-alias we="emacsclient --server-file=work --create-frame --no-wait"
-alias wew="emacsclient --server-file=work"
-
-# windows Git bash only
-alias est="emacs --daemon=personal > /dev/null 2>&1 & disown ; emacs --daemon=work > /dev/null 2>&1 & disown"
+alias we="emacsclient --server-file=work"
+alias wew="emacsclient --server-file=work --create-frame --no-wait"
 
 alias tm0="tmux attach -t 0 || tmux"
 
