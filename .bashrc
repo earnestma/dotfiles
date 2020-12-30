@@ -23,8 +23,14 @@ shopt -s cdspell
 # Aliases
 alias emdaemon="emacs -daemon > /dev/null 2>&1 & disown"
 alias emkill="emacsclient -e '(kill-emacs)'"
-alias yay="emacsclient -c -n -a emacs"
-alias em="emacsclient -c -a emacs"
+
+## personal Emacs Daemon
+alias pe="emacsclient --server-file=personal --create-frame --no-wait"
+alias pew="emacsclient --server-file=personal"
+## work Emacs Daemon
+alias we="emacsclient --server-file=personal --create-frame --no-wait"
+alias wew="emacsclient --server-file=personal"
+
 
 alias tm0="tmux attach -t 0 || tmux"
 
