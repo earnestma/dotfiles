@@ -17,7 +17,7 @@
 	quotepath = false
 	commitGraph = true
 	longpaths = true
-	editor = emacsclient -c --server-file=personal -a emacs
+	editor = emacsclient -c -a emacs
 
 [commit]
 	gpgsign = true

@@ -22,14 +22,9 @@ shopt -s cdspell
 
 # Aliases
 
-## personal Emacs Daemon
-alias pe="emacsclient --server-file=personal"
-alias pew="emacsclient --server-file=personal --create-frame --no-wait"
-alias pk="emacsclient --server-file=personal -e '(kill-emacs)'"
-## work Emacs Daemon
-alias we="emacsclient --server-file=work"
-alias wew="emacsclient --server-file=work --create-frame --no-wait"
-alias wk="emacsclient --server-file=work -e '(kill-emacs)'"
+alias pe="emacsclient"
+alias pew="emacsclient --create-frame --no-wait"
+alias pk="emacsclient -e '(kill-emacs)'"
 
 alias tm0="tmux attach -t 0 || tmux"
 
@@ -37,6 +32,14 @@ alias scoopupdateall="scoop update ; scoop update '*' ; sudo scoop update -g '*'
 
 alias status="git status"
 alias push="git push origin"
+alias wikideploy="rsync -av --delete ~/sites/wiki/ root@earnestma.xyz:/var/www/wiki -e 'ssh -p 69 -i ~/.ssh/tycho_id'"
+
+egc () {
+	git clone https://git.earne.link/$1
+}
+ghc () {
+	git clone https://github.com/$1
+}
 
 eval "$(starship init bash)"
 
