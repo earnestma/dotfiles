@@ -1,10 +1,10 @@
 [Unit]
-Description=Emacs
+Description=Emacs single daemon
 
 [Service]
 Type=forking
-ExecStart=emacs --daemon=%i --chdir %h
-ExecStop=emacsclient --server-file=%i --eval "(kill-emacs)"
+ExecStart=emacs --daemon
+ExecStop=emacsclient --eval "(kill-emacs)"
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
 Restart=on-failure
 
