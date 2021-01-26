@@ -22,6 +22,11 @@ shopt -s cdspell
 
 # Aliases
 
+alias .2="cd ../.."
+alias .3="cd ../../.."
+alias .4="cd ../../../.."
+alias .5="cd ../../../../.."
+
 alias pe="emacsclient"
 alias pew="emacsclient --create-frame --no-wait"
 alias pk="emacsclient -e '(kill-emacs)'"
@@ -33,13 +38,6 @@ alias scoopupdateall="scoop update ; scoop update '*' ; sudo scoop update -g '*'
 alias status="git status"
 alias push="git push origin"
 alias wikideploy="rsync -av --delete ~/sites/wiki/ root@earnestma.xyz:/var/www/wiki -e 'ssh -p 69 -i ~/.ssh/tycho_id'"
-
-egc () {
-	git clone https://git.earne.link/$1
-}
-ghc () {
-	git clone https://github.com/$1
-}
 
 eval "$(starship init bash)"
 
