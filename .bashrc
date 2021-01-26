@@ -36,6 +36,10 @@ alias tm0="tmux attach -t 0 || tmux"
 
 alias scoopupdateall="scoop update ; scoop update '*' ; sudo scoop update -g '*'"
 
+scoop-up () {
+	scoop uninstall $@ 2>&1 >/dev/null && scoop install $@
+}
+
 alias status="git status"
 alias push="git push origin"
 alias wikideploy="rsync -av --delete ~/sites/wiki/ root@earnestma.xyz:/var/www/wiki -e 'ssh -p 69 -i ~/.ssh/tycho_id'"
