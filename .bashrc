@@ -9,6 +9,7 @@ export PATH="$HOME/bin:$PATH"
 if [ "$system_type" = "Linux" ]; then
 	# go
 	export PATH=$PATH:/usr/local/go/bin
+	export PATH=$PATH:$HOME/go/bin
 fi
 
 source ~/.bash_default
