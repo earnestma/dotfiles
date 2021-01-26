@@ -37,6 +37,9 @@
 [pull]
 	ff = only
 
+[push]
+	default = current
+
 [credential]
 	helper = store
 
@@ -46,7 +49,7 @@
 #	smtpuser =
 #	smtpencryption = tls
 #	smtpserverport = 587
-#	smtpPass =
+#	smtpPass = - or not (credential)
 #	annotate = yes
 # [imap]
 #	host = imaps://mail.example.com
@@ -58,4 +61,17 @@
 	checkup = !git log -1 && (git fetch --all 2>/dev/null || true) && git status
 	fuckit = reset --hard
 	setup = !git init && git commit --allow-empty -m \"Initial commit\"
+	# usual ---
+	br = branch
+	co = checkout
+	ca = commit --amend
+	ce = commit --allow-empty-message -m ''
+	cm = commit
+	cv = commit -v
+	di = diff
+	lg = log
+	mg = merge
+	pu = push
+	pl = pull
+	st = status
 
