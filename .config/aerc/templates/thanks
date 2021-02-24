@@ -1,0 +1,5 @@
+X-Sourcehut-Patchset-Update: APPLIED
+
+Thanks!
+
+{{exec "~/.config/aerc/templates/patch.sh" "" }}
