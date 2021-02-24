@@ -23,6 +23,7 @@ shopt -s cdspell
 
 # Aliases
 
+alias c="cd"
 alias .2="cd ../.."
 alias .3="cd ../../.."
 alias .4="cd ../../../.."
@@ -43,6 +44,10 @@ scoop-up () {
 alias status="git status"
 alias push="git push origin"
 alias wikideploy="rsync -av --delete ~/sites/wiki/ root@earnestma.xyz:/var/www/wiki -e 'ssh -p 69 -i ~/.ssh/tycho_id'"
+
+if which gh > /dev/null 2>&1 ; then
+	eval "$(gh completion -s bash)"
+fi
 
 eval "$(starship init bash)"
 

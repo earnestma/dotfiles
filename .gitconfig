@@ -75,3 +75,5 @@
 	pl = pull
 	st = status
 
+[help]
+	autocorrect = 20
