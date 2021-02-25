@@ -40,7 +40,7 @@ esac
 
 
 # if connected over SSH, 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+if [ -n "$SSH_CLIENT" ] && [ -t 1 ] || [ -n "$SSH_TTY" ] && [ -t 1 ]; then
 	export GPG_TTY="$(tty)" # use tty for gpg
 	if [ -z "$TMUX" ]; then
 		printf "%0.s-" {1..50} ; tmux ls
@@ -78,15 +78,10 @@ alias pu="git push origin"
 alias wikideploy="rsync -av --delete ~/sites/wiki/ root@snowfall:/var/www/wiki"
 
 
-# Autocompletion
-eval $(gh completion -s bash)
-
-
-# Display
-eval "$(starship init bash)"
-
-# if interactive session, display welcome prompt thing
+# if interactive session,
 if [ -t 1 ]; then
 	source $HOME/.config/yadm/illumina
+	eval $(gh completion -s bash)
+	eval "$(starship init bash)"
 fi
 
