@@ -1,0 +1,10 @@
+X-Mailer: aerc {{version}}
+
+-------- Doorgestuurd bericht --------
+Onderwerp: {{.Subject}}
+Datum: {{dateFormat .OriginalDate "2006-01-02 15:04 MST" }}
+Van: {{.OriginalFrom}}
+Aan: {{.To}} (this is broken, remove this line)
+Bericht:
+{{wrapText .OriginalText 72}}
+

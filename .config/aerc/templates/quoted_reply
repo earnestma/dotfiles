@@ -1,0 +1,5 @@
+X-Mailer: aerc {{version}}
+
+Op {{ dateFormat (.OriginalDate | toLocal) "2006-01-02 om 15:04 MST" }}, schreef {{ (index .OriginalFrom 0).Name }}:
+{{ wrapText .OriginalText 72 | quote }}
+
