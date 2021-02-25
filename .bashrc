@@ -10,8 +10,13 @@ source $HOME/.bash_default
 
 # Exports
 export EDITOR="nvim"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'" # bat as manpager
-#export MANPAGER="nvim -c 'set ft=man' -" # neovim as manpager
+
+# set $MANPAGER
+if bat -V 2>/dev/null 1>&2; then
+	export MANPAGER="sh -c 'col -bx | bat -l man -p'" # bat as manpager
+elif nvim -v 2>/dev/null 1>&2; then
+	export MANPAGER="nvim -c 'set ft=man' -" # neovim as manpager
+fi
 
 
 # Path
@@ -33,6 +38,15 @@ case ${TERM} in
 #    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"' ;;
 esac
 
+
+# if connected over SSH, 
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	export GPG_TTY="$(tty)" # use tty for gpg
+	if [ -z "$TMUX" ]; then
+		printf "%0.s-" {1..50} ; tmux ls
+		tmux attach -t 0 || tmux # start or join the first tmux session
+	fi
+fi
 
 shopt -s autocd
 shopt -s cdspell
@@ -71,6 +85,8 @@ eval $(gh completion -s bash)
 # Display
 eval "$(starship init bash)"
 
+# if interactive session, display welcome prompt thing
 if [ -t 1 ]; then
 	source $HOME/.config/yadm/illumina
 fi
+
