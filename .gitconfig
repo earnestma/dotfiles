@@ -17,10 +17,11 @@
 	quotepath = false
 	commitGraph = true
 	longpaths = true
-	editor = emacsclient -c -a emacs
+	editor = nvim
 
 [commit]
 	gpgsign = true
+	verbose = true
 
 [init]
 	defaultBranch = main
