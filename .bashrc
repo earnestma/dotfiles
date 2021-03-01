@@ -52,7 +52,6 @@ shopt -s autocd
 shopt -s cdspell
 shopt -s expand_aliases # expand aliases
 shopt -s checkwinsize # check term size when bash regains control
-bind "set completion-ignore-case on" # w/ TAB completion, ignore upper/lower case
 
 
 # Aliases
