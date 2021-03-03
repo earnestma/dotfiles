@@ -27,10 +27,6 @@ if [ "$system_type" = "Linux" ]; then
 	export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin # go
 fi
 
-
-PS1='[\u@\h \W]\$ ' # if starship available, it should overwrite this
-
-
 case ${TERM} in
 	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
 		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007${1}"' ;;
