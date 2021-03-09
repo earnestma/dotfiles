@@ -1,82 +1,130 @@
-# My bash configuration
+# ~/.bashrc: executed by bash(1) for non-login shells.
 
-system_type=$(uname -s)
-if [[ $system_type = MINGW64_NT-10.0* ]]; then
+# Hacks/ fixes for Git Bash on Windows
+if [[ $(uname -o) == Msys ]]; then
 	export USER=$USERNAME
+	. ~/.profile
 fi
 
-source $HOME/.bash_default
-
-
-# Exports
-export EDITOR="nvim"
-
-# set $MANPAGER
-if bat -V 2>/dev/null 1>&2; then
-	export MANPAGER="sh -c 'col -bx | bat -l man -p'" # bat as manpager
-elif nvim -v 2>/dev/null 1>&2; then
-	export MANPAGER="nvim -c 'set ft=man' -" # neovim as manpager
-fi
-
-
-# Path
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-# linux-specific:
-if [ "$system_type" = "Linux" ]; then
-	export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin # go
-fi
-
-case ${TERM} in
-	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007${1}"' ;;
-#  screen*) I do not use screen
-#    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"' ;;
+# If not running interactively, don't do anything
+case $- in
+	*i*) ;;
+	  *) return;;
 esac
 
-
-# if connected over SSH, 
-if [ -n "$SSH_CLIENT" ] && [ -t 1 ] || [ -n "$SSH_TTY" ] && [ -t 1 ]; then
-	export GPG_TTY="$(tty)" # use tty for gpg
-	if [ -z "$TMUX" ]; then
-		printf "%0.s-" {1..50} ; tmux ls
-		tmux attach -t 0 || tmux # start or join the first tmux session
-	fi
-fi
 
 shopt -s autocd
 shopt -s cdspell
 shopt -s expand_aliases # expand aliases
-shopt -s checkwinsize # check term size when bash regains control
 
+HISTCONTROL=ignoreboth # don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
 
-# Aliases
-alias c="cd"
-alias .2="cd ../.."
-alias .3="cd ../../.."
-alias .4="cd ../../../.."
-alias .5="cd ../../../../.."
+shopt -s histappend # append to the history file, don't overwrite it
 
-alias pe="emacsclient"
-alias pew="emacsclient --create-frame --no-wait"
-alias pk="emacsclient -e '(kill-emacs)'"
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
-alias tm0="tmux attach -t 0 || tmux"
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
 
-alias scoopupdateall="scoop update ; scoop update '*' ; sudo scoop update -g '*'"
-function scoop-up () {
-	scoop uninstall $@ 2>&1 >/dev/null && scoop install $@
-}
+# make less more friendly for non-text input files, see lesspipe(1)
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-alias status="git status"
-alias pu="git push origin"
-alias wikideploy="rsync -av --delete ~/sites/wiki/ root@snowfall:/var/www/wiki"
-
-
-# if interactive session,
-if [ -t 1 ]; then
-	source $HOME/.config/yadm/illumina
-	eval $(gh completion -s bash)
-	eval "$(starship init bash)"
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+	debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+	xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+	else
+	color_prompt=
+	fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+	#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+		USER_COLOR="1;32"
+		if [[ $UID == 0 ]]; then
+			USER_COLOR="1;31";
+		fi
+		__git_branch='`git rev-parse --abbrev-ref HEAD 2> /dev/null`'
+		PS1="\n\[$(tput sgr0)\]\[\033[48;5;8m\]\t\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;10m\]\u@\h\[$(tput sgr0)\]\[\033[38;5;13m\]:\w\[$(tput sgr0)\] "$__git_branch"\n\\$ \[$(tput sgr0)\]"
+else
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+	;;
+*)
+	;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls --color=auto'
+	alias dir='dir --color=auto'
+	alias vdir='vdir --color=auto'
+
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+	. /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+  fi
+fi
+
+# If this is an interactive session, welcome and set completion stuff
+if [ -t 1 ]; then
+	source $HOME/.config/yadm/illumina
+fi

@@ -50,19 +50,13 @@
 #	smtpuser =
 #	smtpencryption = tls
 #	smtpserverport = 587
-#	smtpPass = - or not (credential)
+#	smtpPass = or not (save using credential)
 #	annotate = yes
-# [imap]
-#	host = imaps://mail.example.com
-#	user =
-#	pass =
-#	port = 993
 
 [alias]
 	checkup = !git log -1 && (git fetch --all 2>/dev/null || true) && git status
 	fuckit = reset --hard
 	setup = !git init && git commit --allow-empty -m \"Initial commit\"
-	# usual ---
 	br = branch
 	co = checkout
 	ca = commit --amend
