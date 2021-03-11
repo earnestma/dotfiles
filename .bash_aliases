@@ -14,6 +14,8 @@ alias pk="emacsclient -e '(kill-emacs)'"
 
 # Terminal
 # alias tm0="tmux attach -t 0 || tmux"
+# From https://mastodon.xyz/@CarlCravens/105758509287927276
+alias clear='clear; tput cup $LINES 0'
 
 # Scoop
 alias scoopupdateall="scoop update ; scoop update '*' ; sudo scoop update -g '*'"
